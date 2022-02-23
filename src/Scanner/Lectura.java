@@ -22,6 +22,8 @@ public class Lectura
 
 	private Stack pila;
 
+	
+	//Inicio de la lectura del archivo
 	public Lectura()
 	{
 		pila = new Stack();
@@ -38,6 +40,9 @@ public class Lectura
 		
 	}
 
+	/*
+	 * Metodo que se encarga de hacer la primera division en cadenas, utilizando los // añadidos en el lector
+	 */
 	public void parsearCadenaOriginal()
 	{
 		String cadena = cadenaOriginal;
@@ -50,6 +55,11 @@ public class Lectura
 		}
 	}
 
+	/*
+	 * division de las primeras cadenas por bloques, teniendo en cuenta cuantos comandos tiene, y si cumple los parentesis, 
+	 * para hacer el corte, valida hasta 4 comandos en una única linea.
+	 * da las cadenas ya divididas que seran analizadas para ver si cumplen la estructura correspondiente a su comando
+	 */
 	public void dividirBloques()
 	{
 		for(int i = 0; i < cadenas.size() ; i++)
@@ -157,7 +167,11 @@ public class Lectura
 	}
 
 
-
+	/*
+	 * Metodo que identifica la estructura de una unica cadena y determina que tantos comandos tiene
+	 * retorna un array con los indexer de los comandos, para facilitar el split
+	 */
+	
 	public ArrayList<Integer> identificarEstructura(String pCadena)
 	{
 		ArrayList<Integer> comandos = new ArrayList<Integer>();
@@ -191,6 +205,7 @@ public class Lectura
 		return comandos;
 	}
 
+	//Validacion en los parentesis de todas las cadenas ya divididas.
 	public void validarParentesis()
 	{
 		for(int i = 0; i < cadenasDivididas.size() ; i++)
@@ -225,7 +240,6 @@ public class Lectura
 	/*
 	 * Metodo privado que recibe un parentesis de cerrado y verifica que en
 	 * el tope de la pila se encuentre el de apertura
-	 * @param c -- parentesis de cerrado
 	 */
 	private void verifica (char c) 
 	{
@@ -254,6 +268,8 @@ public class Lectura
 		System.out.println("Índice: " + pCadena.indexOf(pPalabra));
 	}
 
+	
+	//Metodo que permite detectar si un salto de linea es en blanco o contiene texto.
 	public boolean sonEspacios(String cad)
 	{
 		if(cad == null)
@@ -277,6 +293,10 @@ public class Lectura
 		}
 	}
 
+	/*
+	 * Lectura del archivo txt, revisa linea por linea, cuando encuentra saltos de linea en blanco, colooca un // para facilitar 
+	 * el primer parse, que divide la cadena original en pequeñas cadenas
+	 */
 	public void leer() 
 	{
 		BufferedReader br = null;
