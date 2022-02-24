@@ -1,48 +1,117 @@
 package Scanner;
 
+import java.util.ArrayList;
+
 public class Constantes {
 	
 	
-	public final static String DEFVAR = "defvar";
+	public String DEFVAR = "defvar";
 	
-	public final static String MOVE = "move";
+	public String BLOCKED = "blocked-p";
 	
-	public final static String TURN = "turn";
+	public String MOVE = "move";
 	
-	public final static String FACE = "face";
+	public String TURN = "turn";
 	
-	public final static String PUT = "put";
+	public String FACE = "face";
 	
-	public final static String PICK = "pick";
+	public String PUT = "put";
 	
-	public final static String MOVEDIR = "move-dir";
+	public String PICK = "pick";
 	
-	public final static String RUN = "run-dirs";
+	public String MOVEDIR = "move-dir";
 	
-	public final static String MOVEFACE = "move-face";
+	public String RUN = "run-dirs";
 	
-	public final static String SKIP = "skip";
+	public String MOVEFACE = "move-face";
 	
-	public final static String IF = "if";
+	public String SKIP = "skip";
 	
-	public final static String LOOP = "loop";
+	public String IF = "if";
 	
-	public final static String DEFUN = "defun";
+	public String LOOP = "loop";
+	
+	public String DEFUN = "defun";
 
-	public final static String FACING = "facing-p";
+	public String FACING = "facing-p";
 	
-	public final static String CANPUT = "can-put-p";
+	public String CANPUT = "can-put-p";
 	
-	public final static String CANPICK = "can-pick-p";
+	public String CANPICK = "can-pick-p";
 	
-	public final static String CANMOVE = "can-move-p";
+	public  String CANMOVE = "can-move-p";
 	
-	public final static String REPEAT = "repeat";
+	public String REPEAT = "repeat";
 	
-	public final static String NOT = "not";
+	public String NOT = "not";
 	
+	public String ROTATE= "rotate";
+	
+	public String FOO = "foo";
+	
+	public String BALLOONS = "Baloons";
+	
+	public String CHIPS= "Chips";
+	
+	public String GOEND = "goend";
+	
+	public String ONE = "one";
+	
+	public String LEFT = "left";
+	
+	public String FRONT = "front";
+
+	public String BACK = "back";
+	
+	public String RIGHT = "right";
+	
+	public String NORTH = "north";
+	
+	public ArrayList<String> comandos;
+		
 	public Constantes()
 	{
-		
+		comandos= new ArrayList<String>(); 
+		for(int i=0; i<10; i++) {
+			comandos.add(Integer.toString(i));
+		}
+		comandos.add("(");
+		comandos.add(")");
+		comandos.add(DEFVAR);
+		comandos.add(BLOCKED);
+		comandos.add(MOVE);
+		comandos.add(TURN);
+		comandos.add(FACE);
+		comandos.add(PUT);
+		comandos.add(PICK);
+		comandos.add(MOVEDIR);
+		comandos.add(RUN);
+		comandos.add(MOVEFACE);
+		comandos.add(SKIP);
+		comandos.add(IF);
+		comandos.add(LOOP);
+		comandos.add(DEFUN);
+		comandos.add(FACING);
+		comandos.add(CANPUT);
+		comandos.add(CANPICK);
+		comandos.add(CANMOVE);
+		comandos.add(REPEAT);
+		comandos.add(NOT);
+		comandos.add(ROTATE);
+		comandos.add(FOO);
+		comandos.add(BALLOONS);
+		comandos.add(CHIPS);
+		comandos.add(GOEND);
+		comandos.add(ONE);
+		comandos.add(LEFT);
+		comandos.add(FRONT);
+		comandos.add(BACK);
+		comandos.add(RIGHT);
+		comandos.add(NORTH);
 	}
+	
+	public boolean validacion(String palabra) {
+		return comandos.contains(palabra);
+	}
+	
 }
