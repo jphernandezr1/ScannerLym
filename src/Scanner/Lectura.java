@@ -28,7 +28,7 @@ public class Lectura
 	}
 
 	/*
-	 * Metodo que se encarga de hacer la primera division en cadenas, utilizando los // añadidos en el lector
+	 * Metodo que se encarga de hacer la primera division en cadenas, utilizando los // aï¿½adidos en el lector
 	 */
 	public void parsearCadena(String cadena)
 	{
@@ -37,43 +37,56 @@ public class Lectura
 		for (int i=0; i<lista.length;i++) {
 			String palabra = lista[i];
 			String palmod="";
+			int cuantas=0;
 			if (palabra.contains("(")) {
 				palabras.add("(");
 				palmod =palabra.substring(1,palabra.length());
 				palabra= palmod;
+				while (palabra.contains("("))
+					{
+						palabras.add("(");
+						palmod =palabra.substring(1,palabra.length());
+						palabra= palmod;
+					}
+				
 			}
 			if (palabra.contains(")")) 
 			{
-								palabras.add(")");
-								if(palabra.length()-1!=0)
-								{
-									palmod =palabra.substring(0,palabra.length()-1);
-									palabra= palmod;
-			if (palabra.contains(")")) 
-			{
-								palabras.add(")");
-								if(palabra.length()-1!=0)
-								{
-									palmod =palabra.substring(0,palabra.length()-1);
-									palabra= palmod;
-								}
-								else
-								{
-									palabra="";
-								}
-							}
-								}
-								else
-								{
-									palabra="";
-								}
-							}
+				cuantas++;
+				if(palabra.length()-1!=0)
+				{
+					palmod =palabra.substring(0,palabra.length()-1);
+					palabra= palmod;
+					while (palabra.contains(")"))
+					{
+						cuantas++;
+						if(palabra.length()-1!=0)
+						{
+							palmod =palabra.substring(0,palabra.length()-1);
+							palabra= palmod;
+						}
+						else
+						{
+							palabra="";
+						}
+					}
+				}
+				else
+				{
+					palabra="";
+				}
+			}
 			if (palabra.contains(":")) {
 				palmod =palabra.substring(1,palabra.length());
 				palabra= palmod;
 			}
 			if (palabra.equals("")==false) {
 				palabras.add(palabra);
+				while(cuantas>0)
+				{
+					palabras.add(")");
+					cuantas--;
+				}
 			}
 		}
 				
@@ -82,98 +95,121 @@ public class Lectura
 	public void verificarEntrada()
 	{
 		if (palabras.size()!= 0) {
+			boolean bien =true;
 			for (int i=0;i<palabras.size();i++) {
 				String palabraActual= palabras.get(i);
 				if (verificador.validacion(palabraActual)) {
 					if (palabraActual.equals(verificador.DEFVAR)) {
 						if (verificadorDefvar(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.DEFUN)) {
 						if (verificadorDefun(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.IF)) {
 						if (verificadorIf(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.FOO)) {
 						if (verificadorFoo(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.MOVE)) {
 						if (verificadorMove(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.ROTATE)) {
 						if (verificadorRotate(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.TURN)) {
 						if (verificadorTurn(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.PICK)) {
 						if (verificadorPick(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.BALLOONS)) {
 						if (verificadorBalloons(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.CHIPS)) {
 						if (verificadorChips(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.CANMOVE)) {
 						if (verificadorCanMoveP(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.SKIP)) {
 						if (verificadorSkip(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.RUN)) {
 						if (verificadorRunDirs(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
 					else if (palabraActual.equals(verificador.DEFUN)) {
 						if (verificadorDefun(i)== false) {
 							System.out.println("Error en la palabra "+ palabraActual+ " error ortografico");
+							bien=false;
 							break;
 						}
 					}
+
 				}
 				else {
 					System.out.println("Error en la palabra "+ palabraActual+ " no se encontro en el diccionario");
+					bien=false;
+					break;
 				}
 			}
+			if (bien==true)
+			{
+				System.out.println("se valido y se encuentra correctamente la entrada");
+			}
+
 		}
 	}
 	public boolean verificadorDefvar(int i)
@@ -196,7 +232,8 @@ public class Lectura
 	}
 	public boolean verificadorDefun(int i)
 	{
-		if ((palabras.get(i+1).equals(verificador.BLOCKED) || (palabras.get(i+1).equals(verificador.FOO)||palabras.get(i+2).equals(verificador.GOEND)))) {
+
+		if ((palabras.get(i+1).equals(verificador.BLOCKED) || (palabras.get(i+1).equals(verificador.FOO)||palabras.get(i+1).equals(verificador.GOEND)))) {
 			return true;
 		}
 		else {
@@ -205,7 +242,7 @@ public class Lectura
 	}
 	public boolean verificadorFoo(int i)
 	{
-		if ((palabras.get(i+1).equals("(") ||verificadorNumero(palabras.get(i+1))) && (palabras.get(i+2).equals("c")||verificadorNumero(palabras.get(i+2))) && (palabras.get(i+3).equals("p")||palabras.get(i+2).equals(")"))) {
+		if ((palabras.get(i+1).equals("(") || verificadorNumero(palabras.get(i+1))) && (palabras.get(i+2).equals("c")||verificadorNumero(palabras.get(i+2))) && (palabras.get(i+3).equals("p")||palabras.get(i+3).equals(")"))) {
 			return true;
 		}
 		else {
@@ -214,7 +251,8 @@ public class Lectura
 	}
 	public boolean verificadorMove(int i)
 	{
-		if (verificadorNumero(palabras.get(i+1)) || palabras.get(i+1).equals(verificador.ONE)){
+		
+		if (verificadorNumero(palabras.get(i+1)) || palabras.get(i+1).equals(verificador.ONE)||palabras.get(i+1).equals(verificador.ROTATE)){
 			return true;
 		}
 		else {
@@ -241,7 +279,7 @@ public class Lectura
 	}
 	public boolean verificadorPick(int i)
 	{
-		if (palabras.get(i+1).equals("c")){
+		if (palabras.get(i+1).equals("Chips")){
 			return true;
 		}
 		else {
@@ -312,7 +350,7 @@ public class Lectura
 	}
 	/*
 	 * Lectura del archivo txt, revisa linea por linea, cuando encuentra saltos de linea en blanco, colooca un // para facilitar 
-	 * el primer parse, que divide la cadena original en pequeñas cadenas
+	 * el primer parse, que divide la cadena original en pequeï¿½as cadenas
 	 */
 	public void leer() 
 	{

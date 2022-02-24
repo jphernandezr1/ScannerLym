@@ -49,7 +49,7 @@ public class Constantes {
 	
 	public String FOO = "foo";
 	
-	public String BALLOONS = "Baloons";
+	public String BALLOONS = "Balloons";
 	
 	public String CHIPS= "Chips";
 	
@@ -77,6 +77,8 @@ public class Constantes {
 		}
 		comandos.add("(");
 		comandos.add(")");
+		comandos.add("c");
+		comandos.add("p");
 		comandos.add(DEFVAR);
 		comandos.add(BLOCKED);
 		comandos.add(MOVE);
